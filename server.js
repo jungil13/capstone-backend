@@ -14,24 +14,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Define CORS options globally
 const corsOptions = {
   origin: ['https://cph-front.vercel.app', 'http://localhost:5173'], 
   optionsSuccessStatus: 200 
 };
 
 app.use(cors(corsOptions));
-
-
-app.use(cors({
-  origin: 'http://localhost:5173', 
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
 app.use(bodyParser.json());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
@@ -59,6 +51,7 @@ app.post('/api/contact', async (req, res) => {
     res.status(500).json({ msg: 'Failed to send message. Please try again.' });
   }
 });
+
 
 // Routes
 app.use('/api', reportRoutes);
