@@ -14,10 +14,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const corsOptions = {
+  origin: ['https://cph-front.vercel.app', 'http://localhost:5173'], 
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(cors({
-  origin: ['https://cph-front.vercel.app', 'http://localhost:5173'],
-  optionsSuccessStatus: 200,
+  origin: 'http://localhost:5173', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
