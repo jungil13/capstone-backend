@@ -7,9 +7,6 @@
       }
     ],
     "routes": [
-      {
-     "src": "/(.*)",
-     "dest": "/server.js"
-      }
-    ]
-     }
+  { "src": "http://localhost:3000/api/(.*)", "dest": "/server.js" }
+]
+}
